@@ -24,17 +24,18 @@ def get_filters():
     day = None
     # get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
     while city != "chicago" and city != "new york city" and city != "washington":
-        city = input("Enter a city (chicago, new york city , washington): ")
+        city = input(
+            "Enter a city (chicago, new york city , washington): ").lower()
     # get user input for month (all, january, february, ... , june)
-    while month != "all" and month != "jan" and month != "feb"\
+    while month != "all" and month != "january" and month != "february"\
             and month != "march" and month != "april" and month != "may"\
             and month != "june":
         month = input(
-            "If you want to filter by month Enter->(jan, feb, march, april, may, june) or no filter Enter->(all) ")
+            "If you want to filter by month Enter->(january, february, march, april, may, june) or no filter Enter->(all) ")
     # get user input for day of week (all, monday, tuesday, ... sunday)
-    while day != 'all' and day != '1' and day != '2' and day != '3' and day != '4' and day != '5' and day != '6' and day != '7':
+    while day != 'all' and day != 'sunday' and day != 'monday' and day != 'tuesday' and day != 'wednesday' and day != 'thursday' and day != 'friday' and day != 'saturday':
         day = input(
-            "If you want to filter by day Enter->(1 to 7) where (1=sunday) or no filter Enter->(all) ")
+            "If you want to filter by day Enter a day e.g.(Tuesday) or no filter Enter (all) ").lower()
     print('-'*40)
     return city, month, day
 
@@ -57,15 +58,15 @@ def load_data(city, month, day):
     df['month'] = df['Start Time'].dt.month
     df['day_of_week'] = df['Start Time'].dt.day_name()
     if month != 'all':
-        months = ['jan', 'feb', 'march', 'april', 'may', 'june']
+        months = ['january', 'february', 'march', 'april', 'may', 'june']
         month = months.index(month)+1
         df = df[df['month'] == month]
     if day != 'all':
-        day_index = int(day)-1
-        days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
-                'Friday', 'Saturday']
-        day_name = days[day_index]
-        df = df[df['day_of_week'] == day_name]
+        #day_index = int(day)-1
+        # days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
+        #        'Friday', 'Saturday']
+        #day_name = days[day_index]
+        df = df[df['day_of_week'] == day.title()]
     return df
 
 
@@ -160,6 +161,16 @@ def user_stats(df):
     print('-'*40)
 
 
+def display_data(df):
+    view_data = input(
+        "Would you like to view 5 rows of individual trip data? Enter yes or no?")
+    start_loc = 0
+    view_display = "yes"
+    while(view_display == "yes"):
+        print(df.iloc[start_loc:start_loc+5])
+        start_loc += 5
+        view_display=input("Do you wish to continue? (yes) (no): ").lower()
+
 def main():
     while True:
         city, month, day = get_filters()
@@ -169,6 +180,7 @@ def main():
         station_stats(df)
         trip_duration_stats(df)
         user_stats(df)
+        display_data(df)
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
             break
