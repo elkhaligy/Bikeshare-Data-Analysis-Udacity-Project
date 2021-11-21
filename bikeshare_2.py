@@ -31,7 +31,7 @@ def get_filters():
             and month != "march" and month != "april" and month != "may"\
             and month != "june":
         month = input(
-            "If you want to filter by month Enter->(january, february, march, april, may, june) or no filter Enter->(all) ")
+            "If you want to filter by month Enter->(january, february, march, april, may, june) or no filter Enter->(all) ").lower()
     # get user input for day of week (all, monday, tuesday, ... sunday)
     while day != 'all' and day != 'sunday' and day != 'monday' and day != 'tuesday' and day != 'wednesday' and day != 'thursday' and day != 'friday' and day != 'saturday':
         day = input(
