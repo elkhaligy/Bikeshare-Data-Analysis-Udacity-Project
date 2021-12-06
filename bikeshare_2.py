@@ -1,6 +1,6 @@
 import time
 import pandas as pd
-import numpy as np
+
 
 CITY_DATA = {
     'chicago': 'chicago.csv',
@@ -43,7 +43,6 @@ def get_filters():
 def load_data(city, month, day):
     """
     Loads data for the specified city and filters by month and day if applicable.
-
     Args:
         (str) city - name of the city to analyze
         (str) month - name of the month to filter by, or "all" to apply no month filter
@@ -169,7 +168,8 @@ def display_data(df):
     while(view_display == "yes"):
         print(df.iloc[start_loc:start_loc+5])
         start_loc += 5
-        view_display=input("Do you wish to continue? (yes) (no): ").lower()
+        view_display = input("Do you wish to continue? (yes) (no): ").lower()
+
 
 def main():
     while True:
