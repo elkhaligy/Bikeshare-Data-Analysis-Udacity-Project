@@ -55,9 +55,3 @@ You will also have the option to view individual trip data in increments of 5 ro
 - `user_stats(df)`: Displays statistics on bikeshare users.
 - `display_data(df)`: Displays 5 rows of individual trip data based on user input.
 - `main()`: The main function that orchestrates the program flow.
-
-## Conclusion
-
-This project provides valuable insights into bikeshare usage patterns in major US cities. By analyzing the data, we can understand the most popular times for bike usage, preferred stations, trip durations, and user demographics. This information can be used to improve bikeshare services and encourage more people to use them.
-
-Feel free to modify and expand the analysis as needed to gain deeper insights into the data. Happy analyzing!
